@@ -1,0 +1,34 @@
+#!/bin/sh
+
+if [ $# -lt 2 ] ; then
+	echo "USAGE: $0 path ApplicationName {author title description}"
+else
+	DST="$1"
+	APP="$2"
+	FNAME="$2"
+	AUTH=${3-Henri}
+	TITLE=${4-Application}
+	DESC=${5-An AngularJS application}
+
+	if [ -d "$DST" ] ; then
+		echo "Destination directory must NOT exist"
+	else
+		cd template && mkdir -p "$DST" && tar cf - . | (cd "$DST" ; tar xf -)
+		cd "$DST"
+		for file in css/f_application.css js/application/f_application-application.js js/controllers/f_application-controller.js js/models/f_application-controller-models.js js/services/f_application-services.js views/f_application.html index.html ; do
+			sed -i .bkp "s/#A_APPLICATION#/$APP/g" $file
+			sed -i .bkp "s/#F_APPLICATION#/$FNAME/g" $file
+			sed -i .bkp "s/#M_AUTHOR#/$AUTH/g" $file
+			sed -i .bkp "s/#H_TITLE#/$TITLE/g" $file
+			sed -i .bkp "s/#M_DESCRIPTION#/$DESC/g" $file
+			rm -f "${file}.bkp"
+		done
+
+		mv css/f_application.css "css/${FNAME}.css"
+		mv js/application/f_application-application.js "js/application/${FNAME}-application.js"
+		mv js/controllers/f_application-controller.js "js/controllers/${FNAME}-controller.js"
+		mv js/models/f_application-controller-models.js "js/models/${FNAME}-controller-models.js"
+		mv js/services/f_application-services.js "js/services/${FNAME}-services.js"
+		mv views/f_application.html "views/${FNAME}.html"
+	fi
+fi

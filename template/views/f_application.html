@@ -1,0 +1,8 @@
+<div class="container" ng-controller="#A_APPLICATION#Ctrl">
+    <div class="row">
+        <label ng-if="data.config.sayHello">{{data.message}}</label>
+        <ul>
+        <li ng-repeat="row in data.todo | filter:searchText">{{row}}</li>
+        </ul>
+    </div>
+</div>
