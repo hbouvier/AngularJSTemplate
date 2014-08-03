@@ -2,7 +2,10 @@
     <div class="row">
         <label ng-if="model.appName">{{model.appName}}</label>
         <ul>
-        <li ng-repeat="(key, value) in model | filter:searchText">{{key}} = {{value}}</li>
+        <li ng-repeat="(key, value) in model | filter:searchText">
+        	{{key}}
+			<a href="#" editable-text="value">{{ value || "empty" }}</a>
+        </li>
         </ul>
     </div>
 </div>
