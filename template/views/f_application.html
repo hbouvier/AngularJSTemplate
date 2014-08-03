@@ -1,8 +1,8 @@
-<div class="container" ng-controller="#A_APPLICATION#Ctrl">
+<div class="container" ng-controller="#A_APPLICATION#Ctrl as ctrl">
     <div class="row">
-        <label ng-if="data.config.sayHello">{{data.message}}</label>
+        <label ng-if="model.appName">{{model.appName}}</label>
         <ul>
-        <li ng-repeat="row in data.todo | filter:searchText">{{row}}</li>
+        <li ng-repeat="(key, value) in model | filter:searchText">{{key}} = {{value}}</li>
         </ul>
     </div>
 </div>

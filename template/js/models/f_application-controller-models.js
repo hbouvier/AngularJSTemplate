@@ -1,19 +1,12 @@
-angular.module('#A_APPLICATION#Models', [])
-    .factory('ConfigModel', function() {
-        var model = {
-            sayHello : true
-        };
-        return model;
-    })
-    .factory('ToDoModel', function() {
-        var model = {
-        	todo : [
-        		"do one thing",
-        		"do another thing",
-        		"do nothing",
-        		"do something"
-        	]
-        };
-        return model;
-    })
-;
+(function () {
+    angular
+        .module('#A_APPLICATION#Models', [])
+        .factory('#A_APPLICATION#Model', function() {
+            var model = {
+                appVersion : '0.0.1',
+                appName    : '#A_APPLICATION#'
+            };
+            return model;
+        })
+    ;
+})();
